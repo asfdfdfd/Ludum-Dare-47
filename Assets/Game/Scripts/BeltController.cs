@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BeltController : MonoBehaviour
 {
+    public bool isCorner;
+    
     public Vector2 direction;
 
     public float speed;
@@ -36,7 +38,10 @@ public class BeltController : MonoBehaviour
         _spitzController = _spitz.GetComponent<SpitzController>();
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRendererArrow = arrow.GetComponent<SpriteRenderer>();
+        if (arrow != null)
+        {
+            _spriteRendererArrow = arrow.GetComponent<SpriteRenderer>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -77,12 +82,18 @@ public class BeltController : MonoBehaviour
         if (_isReverted)
         {
             _spriteRenderer.sprite = spriteReverseBelt;
-            _spriteRendererArrow.sprite = spriteReverseBeltArrow;
+            if (_spriteRendererArrow != null)
+            {
+                _spriteRendererArrow.sprite = spriteReverseBeltArrow;
+            }
         }
         else
         {
             _spriteRenderer.sprite = spriteStraightBelt;
-            _spriteRendererArrow.sprite = spriteStraightBeltArrow;
+            if (_spriteRendererArrow != null)
+            {
+                _spriteRendererArrow.sprite = spriteStraightBeltArrow;
+            }
         }
     }
 
