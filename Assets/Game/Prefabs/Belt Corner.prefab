@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5861b498aa8e54e8c830c1f8a7eacd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCorner: 0
+  isCorner: 1
   direction: {x: 1, y: 0}
   speed: 1
   spriteStraightBelt: {fileID: 21300000, guid: ed306ef324c4e46a0aa246c401ec0086, type: 3}

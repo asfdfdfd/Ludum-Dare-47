@@ -101,7 +101,35 @@ public class BeltController : MonoBehaviour
     {
         if (_isReverted)
         {
-            return direction * -1;
+            if (!isCorner)
+            {
+                return direction * -1;
+            }
+            else
+            {
+                // Right Top.
+                if (direction.x == -1 && direction.y == 0)
+                {
+                    return new Vector2(0, -1);
+                }
+                // Left Top.
+                else if (direction.x == 0 && direction.y == -1)
+                {
+                    return new Vector2(1, 0);
+                }
+                // Left Bottom.
+                else if (direction.x == 1 && direction.y == 0)
+                {
+                    return new Vector2(0, 1);
+                }
+                // Right Bottom.
+                else if (direction.x == 0 && direction.y == 1)
+                {
+                    return new Vector2(-1, 0);
+                }
+
+                throw new Exception("Wrong direction.");
+            }
         }
         else
         {
