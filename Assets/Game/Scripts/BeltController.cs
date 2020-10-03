@@ -15,6 +15,8 @@ public class BeltController : MonoBehaviour
     private SpitzController _spitzController;
     
     private Vector2 _movementForce;
+
+    private bool _isReverted;
     
     private void Start()
     {
@@ -23,21 +25,20 @@ public class BeltController : MonoBehaviour
         _spitzRigidbody = _spitz.GetComponent<Rigidbody2D>();
         _spitzController = _spitz.GetComponent<SpitzController>();
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        other.gameObject.GetComponent<BeltTarget>()?.OnBeltEnter(this);
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (_spitzCollider == other)
         {
             _movementForce = direction * speed;
         }
-        else
-        {
-            var rigidbody = other.gameObject.GetComponent<Rigidbody2D>();
-            if (rigidbody != null)
-            {
-                rigidbody.velocity = direction;
-            }
-        }
+
+        other.gameObject.GetComponent<BeltTarget>()?.OnBeltStay(this);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -46,19 +47,30 @@ public class BeltController : MonoBehaviour
         {
             _movementForce = new Vector2();
         }
-        else
-        {
-            var rigidbody = other.gameObject.GetComponent<Rigidbody2D>();
-            if (rigidbody != null)
-            {
-                rigidbody.velocity = new Vector2();
-            }
-        }
+        
+        other.gameObject.GetComponent<BeltTarget>()?.OnBeltExit(this);
     }
 
     private void FixedUpdate()
     {
-        _spitzRigidbody.AddForce(_movementForce);
+        //_spitzRigidbody.AddForce(_movementForce);
         //_spitzController.SetBeltVelocity(_movementForce);
+    }
+
+    public void Revert()
+    {
+        _isReverted = !_isReverted;
+    }
+
+    public Vector2 GetDirection()
+    {
+        if (_isReverted)
+        {
+            return direction * -1;
+        }
+        else
+        {
+            return direction;
+        }
     }
 }

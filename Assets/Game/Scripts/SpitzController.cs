@@ -5,7 +5,7 @@ using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
-public class SpitzController : MonoBehaviour
+public class SpitzController : MonoBehaviour, BeltTarget
 {
     public float speed;
     
@@ -14,8 +14,8 @@ public class SpitzController : MonoBehaviour
     private Rigidbody2D _rigidbody;
 
     private Vector2 _movementDirection;
-
-    private Vector2 _beltVelocity;
+    
+    private List<BeltController> _activeBelts = new List<BeltController>();
     
     private void Awake()
     {
@@ -34,7 +34,13 @@ public class SpitzController : MonoBehaviour
     {
         if (_isInteractionsAllowed)
         {
-            _rigidbody.velocity = _movementDirection * speed + _beltVelocity;
+            Vector2 beltVelocity = new Vector2();
+            if (_activeBelts.Count > 0)
+            {
+                beltVelocity = _activeBelts[0].GetDirection() * _activeBelts[0].speed;
+            }
+
+            _rigidbody.velocity = _movementDirection * speed + beltVelocity;
         }
     }
     
@@ -45,9 +51,30 @@ public class SpitzController : MonoBehaviour
         _movementDirection = new Vector2();
         _rigidbody.velocity = new Vector2();
     }
-
-    public void SetBeltVelocity(Vector2 beltVelocity)
+    
+    public void OnBeltEnter(BeltController belt)
     {
-        _beltVelocity = beltVelocity;
+        if (!_activeBelts.Contains(belt))
+        {
+            _activeBelts.Add(belt);
+        }
+    }
+
+    public void OnBeltStay(BeltController belt)
+    {
+        
+    }
+
+    public void OnBeltExit(BeltController belt)
+    {
+        if (_activeBelts.Contains(belt))
+        {
+            _activeBelts.Remove(belt);
+        }
+    }
+
+    public void TakeItem(string name)
+    {
+        GameState.TakeItem(name);
     }
 }
