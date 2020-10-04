@@ -77,4 +77,13 @@ public class SpitzController : MonoBehaviour, BeltTarget
     {
         GameState.TakeItem(name);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var bone = other.gameObject.GetComponent<Bone>();
+        if (bone != null)
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
