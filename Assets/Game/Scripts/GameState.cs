@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class GameState
 {
-    private static List<string> _takenItems = new List<string>();
+    private static bool _isItemTaken = false;
 
     private static int _bones = 0;
     
-    public static void TakeItem(string name)
+    public static void TakeItem()
     {
-        _takenItems.Add(name);
+        _isItemTaken = true;
     }
 
     public static void TakeBone()

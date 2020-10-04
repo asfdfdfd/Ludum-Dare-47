@@ -21,6 +21,9 @@ public class SpitzController : MonoBehaviour
 
     private int _animationParameterIdDirectionHorizontal;
 
+    public AudioSource soundTakeBone;
+    public AudioSource soundTakeJake;
+    
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -87,12 +90,7 @@ public class SpitzController : MonoBehaviour
             _activeBelts.Remove(belt);
         }
     }
-
-    public void TakeItem(string name)
-    {
-        GameState.TakeItem(name);
-    }
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         var bone = other.gameObject.GetComponent<Bone>();
@@ -102,10 +100,27 @@ public class SpitzController : MonoBehaviour
             
             TakeBone();
         }
+
+        var jake = other.gameObject.GetComponent<Item>();
+        if (jake != null)
+        {
+            Destroy(other.gameObject);
+
+            TakeJake();
+        }
     }
 
     private void TakeBone()
     {
+        soundTakeBone.Play();
+        
         GameState.TakeBone();
+    }
+
+    private void TakeJake()
+    {
+        soundTakeJake.Play();
+        
+        GameState.TakeItem();
     }
 }
