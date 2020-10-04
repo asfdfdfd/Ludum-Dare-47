@@ -99,6 +99,13 @@ public class SpitzController : MonoBehaviour
         if (bone != null)
         {
             Destroy(other.gameObject);
+            
+            TakeBone();
         }
+    }
+
+    private void TakeBone()
+    {
+        GameState.TakeBone();
     }
 }
