@@ -35,4 +35,9 @@ public class GameState
     {
         return _bones;
     }
+
+    public static bool GetIsItemTaken()
+    {
+        return _isItemTaken;
+    } 
 }
