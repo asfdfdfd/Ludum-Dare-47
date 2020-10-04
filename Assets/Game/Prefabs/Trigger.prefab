@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3571723664365656743}
   - component: {fileID: 137104669568242104}
   - component: {fileID: 320978025669423832}
+  - component: {fileID: 5146700297866444193}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -119,5 +120,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb97d2f13f43442dc8f17d8a142ed14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5146700297866444193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220295298925782700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6cce972e1ca48509f1fcd0b08c4f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

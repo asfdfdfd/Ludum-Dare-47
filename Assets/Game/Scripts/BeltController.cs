@@ -99,6 +99,8 @@ public class BeltController : MonoBehaviour
 
     public Vector2 GetDirection()
     {
+        //var direction = gameObject.transform.right;
+        
         if (_isReverted)
         {
             if (!isCorner)
@@ -134,6 +136,16 @@ public class BeltController : MonoBehaviour
         else
         {
             return direction;
+            /*
+            if (!isCorner)
+            {
+                return direction;
+            }
+            else
+            {
+                return direction * -1;
+            }
+            */
         }
     }
 }

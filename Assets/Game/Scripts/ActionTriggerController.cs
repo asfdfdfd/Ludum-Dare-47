@@ -15,8 +15,6 @@ public class ActionTriggerController : MonoBehaviour
     
     private void Start()
     {
-        Destroy(GetComponent<SpriteRenderer>());
-        
         _spitz = GameObject.Find("Spitz");
         _spitzCollider = _spitz.GetComponent<Collider2D>();
     }
