@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/LevelNew.unity
     guid: 93464858a419143858780285b5404e29
   - enabled: 1
+    path: Assets/Game/Scenes/Start page.unity
+    guid: e52343d1178aa431fbb363ef7e2e619d
+  - enabled: 1
     path: Assets/Game/Scenes/LevelTest 1.unity
     guid: 2f6c103da8ad34460b495f201fc74182
   - enabled: 1
