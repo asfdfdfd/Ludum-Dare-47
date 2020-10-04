@@ -16,9 +16,16 @@ public class SpitzController : MonoBehaviour, BeltTarget
     private Vector2 _movementDirection;
     
     private List<BeltController> _activeBelts = new List<BeltController>();
-    
+
+    private Animator _animator;
+
+    private int _animationParameterIdDirectionHorizontal;
+
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
+        _animationParameterIdDirectionHorizontal = Animator.StringToHash("Direction Horizontal");
+        
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -27,6 +34,19 @@ public class SpitzController : MonoBehaviour, BeltTarget
         if (_isInteractionsAllowed)
         {
             _movementDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+            if (_movementDirection.x > 0)
+            {
+                _animator.SetInteger(_animationParameterIdDirectionHorizontal, 1);
+            } 
+            else if (_movementDirection.x < 0)
+            {
+                _animator.SetInteger(_animationParameterIdDirectionHorizontal, -1);
+            }
+            else
+            {
+                _animator.SetInteger(_animationParameterIdDirectionHorizontal, 0);
+            }
         }
     }
 
