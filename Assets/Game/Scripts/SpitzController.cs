@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using Random = System.Random;
 using Vector2 = UnityEngine.Vector2;
 
 public class SpitzController : MonoBehaviour
@@ -23,6 +24,11 @@ public class SpitzController : MonoBehaviour
 
     public AudioSource soundTakeBone;
     public AudioSource soundTakeJake;
+    public AudioSource soundMeetGoat;
+
+    public AudioSource[] soundsBark;
+    
+    private Random random = new Random();
     
     private void Awake()
     {
@@ -108,6 +114,15 @@ public class SpitzController : MonoBehaviour
 
             TakeJake();
         }
+
+        if (!GameState.IsGoatMet())
+        {
+            var goat = other.gameObject.GetComponent<Goat>();
+            if (goat != null)
+            {
+                MeetGoat();
+            }
+        }
     }
 
     private void TakeBone()
@@ -122,5 +137,22 @@ public class SpitzController : MonoBehaviour
         soundTakeJake.Play();
         
         GameState.TakeItem();
+    }
+
+    private void MeetGoat()
+    {
+        soundMeetGoat.Play();
+        
+        GameState.MeetGoat();
+    }
+
+    public void Bark()
+    {
+        if (soundsBark.Length > 0)
+        {
+            var soundIndex = random.Next(0, soundsBark.Length);
+            
+            soundsBark[soundIndex].Play();
+        }
     }
 }

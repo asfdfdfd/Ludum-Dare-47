@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class ActionTriggerController : MonoBehaviour
 {
     private GameObject _spitz;
+    private SpitzController _spitzController;
+    
     private Collider2D _spitzCollider;
 
     private bool _isSpitzInTrigger = false;
@@ -20,12 +22,15 @@ public class ActionTriggerController : MonoBehaviour
     {
         _spitz = GameObject.Find("Spitz");
         _spitzCollider = _spitz.GetComponent<Collider2D>();
+        _spitzController = _spitz.GetComponent<SpitzController>();
     }
 
     private void Update()
     {
         if (_isSpitzInTrigger && Input.GetKeyUp(KeyCode.Space))
         {
+            _spitzController.Bark();
+            
             target?.Invoke();
         }
     }
