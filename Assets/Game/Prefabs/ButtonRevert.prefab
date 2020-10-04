@@ -165,6 +165,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &882420714171474342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370681613617584517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f8c2020960a40e2879aff976f0c6f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3635942212656457249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 8718133616373776292, guid: f39b3867311174f88b7c55b4a13ea727,
         type: 3}
       propertyPath: m_Name
-      value: WallWithButton (1)
+      value: ButtonRevert
       objectReference: {fileID: 0}
     - target: {fileID: 8900579313677984186, guid: f39b3867311174f88b7c55b4a13ea727,
         type: 3}
@@ -255,6 +267,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f39b3867311174f88b7c55b4a13ea727, type: 3}
+--- !u!1 &5370681613617584517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8718133616373776292, guid: f39b3867311174f88b7c55b4a13ea727,
+    type: 3}
+  m_PrefabInstance: {fileID: 3635942212656457249}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5327832678618826651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8900579313677984186, guid: f39b3867311174f88b7c55b4a13ea727,

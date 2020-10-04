@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3571723663465965574}
   - component: {fileID: 137104668790121241}
   - component: {fileID: 320978026166386809}
+  - component: {fileID: 1225661698648358598}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -135,6 +136,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1225661698648358598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220295299548648461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f8c2020960a40e2879aff976f0c6f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7165428095071919683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -166,7 +179,7 @@ PrefabInstance:
     - target: {fileID: 8718133616373776292, guid: f39b3867311174f88b7c55b4a13ea727,
         type: 3}
       propertyPath: m_Name
-      value: WallWithButton
+      value: ButtonGate
       objectReference: {fileID: 0}
     - target: {fileID: 8900579313677984186, guid: f39b3867311174f88b7c55b4a13ea727,
         type: 3}
