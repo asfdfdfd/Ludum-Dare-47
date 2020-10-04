@@ -15,7 +15,7 @@ public class BeltController : MonoBehaviour
     private SpitzController _spitzController;
     private Collider2D _spitzCollider;
     
-    private bool _isReverted;
+    public bool isReverted;
 
     public Sprite spriteStraightBelt;
     public Sprite spriteStraightBeltArrow;
@@ -39,6 +39,8 @@ public class BeltController : MonoBehaviour
         {
             _spriteRendererArrow = arrow.GetComponent<SpriteRenderer>();
         }
+        
+        SetupSprites();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -67,9 +69,14 @@ public class BeltController : MonoBehaviour
 
     public void Revert()
     {
-        _isReverted = !_isReverted;
+        isReverted = !isReverted;
 
-        if (_isReverted)
+        SetupSprites();
+    }
+
+    private void SetupSprites()
+    {
+        if (isReverted)
         {
             _spriteRenderer.sprite = spriteReverseBelt;
             if (_spriteRendererArrow != null)
@@ -91,7 +98,7 @@ public class BeltController : MonoBehaviour
     {
         //var direction = gameObject.transform.right;
         
-        if (_isReverted)
+        if (isReverted)
         {
             if (!isCorner)
             {
