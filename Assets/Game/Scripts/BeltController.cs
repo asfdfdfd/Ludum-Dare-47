@@ -12,11 +12,9 @@ public class BeltController : MonoBehaviour
     public float speed;
 
     private GameObject _spitz;
-    private Collider2D _spitzCollider;
-    private Rigidbody2D _spitzRigidbody;
     private SpitzController _spitzController;
-    private Vector2 _movementForce;
-
+    private Collider2D _spitzCollider;
+    
     private bool _isReverted;
 
     public Sprite spriteStraightBelt;
@@ -33,10 +31,9 @@ public class BeltController : MonoBehaviour
     private void Start()
     {
         _spitz = GameObject.Find("Spitz");
-        _spitzCollider = _spitz.GetComponent<Collider2D>();
-        _spitzRigidbody = _spitz.GetComponent<Rigidbody2D>();
         _spitzController = _spitz.GetComponent<SpitzController>();
-
+        _spitzCollider = _spitz.GetComponent<Collider2D>();
+        
         _spriteRenderer = GetComponent<SpriteRenderer>();
         if (arrow != null)
         {
@@ -46,33 +43,26 @@ public class BeltController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.gameObject.GetComponent<BeltTarget>()?.OnBeltEnter(this);
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (_spitzCollider == other)
+        if (other == _spitzCollider)
         {
-            _movementForce = direction * speed;
+            _spitzController.OnBeltEnter(this);
         }
-
-        other.gameObject.GetComponent<BeltTarget>()?.OnBeltStay(this);
+        else
+        {
+            other.gameObject.GetComponent<BeltTarget>()?.OnBeltEnter(this);
+        }
     }
-
+    
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (_spitzCollider == other)
+        if (other == _spitzCollider)
         {
-            _movementForce = new Vector2();
+            _spitzController.OnBeltExit(this);
         }
-        
-        other.gameObject.GetComponent<BeltTarget>()?.OnBeltExit(this);
-    }
-
-    private void FixedUpdate()
-    {
-        //_spitzRigidbody.AddForce(_movementForce);
-        //_spitzController.SetBeltVelocity(_movementForce);
+        else
+        {
+            other.gameObject.GetComponent<BeltTarget>()?.OnBeltExit(this);
+        }
     }
 
     public void Revert()

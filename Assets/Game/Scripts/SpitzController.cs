@@ -5,7 +5,7 @@ using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
-public class SpitzController : MonoBehaviour, BeltTarget
+public class SpitzController : MonoBehaviour
 {
     public float speed;
     
@@ -79,12 +79,7 @@ public class SpitzController : MonoBehaviour, BeltTarget
             _activeBelts.Add(belt);
         }
     }
-
-    public void OnBeltStay(BeltController belt)
-    {
-        
-    }
-
+    
     public void OnBeltExit(BeltController belt)
     {
         if (_activeBelts.Contains(belt))
