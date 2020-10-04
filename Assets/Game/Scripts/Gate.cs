@@ -13,7 +13,9 @@ public class Gate : MonoBehaviour
     private Collider2D _gameObjectGate2Collider;
 
     private bool _isOpened = false;
-        
+
+    public float distance = 0.5f;
+    
     private void Start()
     {
         _gameObjectGate1Collider = gameObjectGate1.GetComponent<Collider2D>();
@@ -30,11 +32,11 @@ public class Gate : MonoBehaviour
             Destroy(_gameObjectGate2Collider);
 
             var gameObject1PositionStart = gameObjectGate1.transform.position;
-            var gameObject1PositionEnd = gameObject1PositionStart - gameObjectGate1.transform.up * 0.5f;
+            var gameObject1PositionEnd = gameObject1PositionStart - gameObjectGate1.transform.up * distance;
             gameObjectGate1.transform.DOMove(gameObject1PositionEnd, 0.3f);
             
             var gameObject2PositionStart = gameObjectGate2.transform.position;
-            var gameObject2PositionEnd = gameObject2PositionStart + gameObjectGate2.transform.up * 0.5f;
+            var gameObject2PositionEnd = gameObject2PositionStart + gameObjectGate2.transform.up * distance;
             gameObjectGate2.transform.DOMove(gameObject2PositionEnd, 0.3f);
         }
     }
