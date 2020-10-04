@@ -6,17 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Game/Scenes/Credits.unity
-    guid: cfd2687860e324dc6b626077c820d829
-  - enabled: 1
-    path: Assets/Game/Scenes/Gameover.unity
-    guid: 95f65b5c0b96c4a6a815bc06f2d484e1
-  - enabled: 1
-    path: Assets/Game/Scenes/Level 4.unity
-    guid: 5c5bf840dba3546bcaba571aa5bbe97e
-  - enabled: 1
-    path: Assets/Game/Scenes/Level 5.unity
-    guid: 567f07b604a6147368034b5b81480645
+    path: Assets/Game/Scenes/Start page.unity
+    guid: e52343d1178aa431fbb363ef7e2e619d
   - enabled: 1
     path: Assets/Game/Scenes/Level_1.unity
     guid: 3627f0ecec111964dab4ca0deb769a44
@@ -27,18 +18,9 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/Level_3.unity
     guid: e4df0a7d15e4adb4b95b53b22a5e73be
   - enabled: 1
-    path: Assets/Game/Scenes/LevelNew.unity
-    guid: 93464858a419143858780285b5404e29
+    path: Assets/Game/Scenes/Level 4.unity
+    guid: 5c5bf840dba3546bcaba571aa5bbe97e
   - enabled: 1
-    path: Assets/Game/Scenes/Start page.unity
-    guid: e52343d1178aa431fbb363ef7e2e619d
-  - enabled: 1
-    path: Assets/Game/Scenes/LevelTest 1.unity
-    guid: 2f6c103da8ad34460b495f201fc74182
-  - enabled: 1
-    path: Assets/Game/Scenes/LevelTest.unity
-    guid: 80b3b866e5ce747b0b8c9e4e236fc73f
-  - enabled: 1
-    path: Assets/Game/Scenes/Start.unity
-    guid: 802faeb666cca4ce3a358351cb7aeb85
+    path: Assets/Game/Scenes/Level 5.unity
+    guid: 567f07b604a6147368034b5b81480645
   m_configObjects: {}

@@ -29,8 +29,6 @@ public class ActionTriggerController : MonoBehaviour
     {
         if (_isSpitzInTrigger && Input.GetKeyUp(KeyCode.Space))
         {
-            _spitzController.Bark();
-            
             target?.Invoke();
         }
     }

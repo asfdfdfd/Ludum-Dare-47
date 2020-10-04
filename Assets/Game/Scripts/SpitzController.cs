@@ -56,6 +56,11 @@ public class SpitzController : MonoBehaviour
             {
                 _animator.SetInteger(_animationParameterIdDirectionHorizontal, 0);
             }
+
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Bark();
+            }
         }
     }
 
@@ -148,6 +153,11 @@ public class SpitzController : MonoBehaviour
 
     public void Bark()
     {
+        foreach (var audioSource in soundsBark)
+        {
+            audioSource.Stop();
+        }
+        
         if (soundsBark.Length > 0)
         {
             var soundIndex = random.Next(0, soundsBark.Length);

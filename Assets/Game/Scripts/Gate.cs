@@ -15,6 +15,8 @@ public class Gate : MonoBehaviour
     private bool _isOpened = false;
 
     public float distance = 0.5f;
+
+    public AudioSource audioSourceOpen;
     
     private void Start()
     {
@@ -26,6 +28,8 @@ public class Gate : MonoBehaviour
     {
         if (!_isOpened)
         {
+            audioSourceOpen.Play();
+            
             _isOpened = true;
             
             Destroy(_gameObjectGate1Collider);
