@@ -12,6 +12,9 @@ public class ActionTriggerController : MonoBehaviour
     private bool _isSpitzInTrigger = false;
 
     public UnityEvent target;
+
+    public UnityEvent eventOnSpitzEnter;
+    public UnityEvent eventOnSpitzExit;
     
     private void Start()
     {
@@ -32,6 +35,8 @@ public class ActionTriggerController : MonoBehaviour
         if (_spitzCollider == other)
         {
             _isSpitzInTrigger = true;
+            
+            eventOnSpitzEnter?.Invoke();
         }
     }
 
@@ -40,6 +45,8 @@ public class ActionTriggerController : MonoBehaviour
         if (_spitzCollider == other)
         {
             _isSpitzInTrigger = false;
+            
+            eventOnSpitzExit?.Invoke();
         }
     }
 }
