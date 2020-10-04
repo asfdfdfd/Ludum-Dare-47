@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class MoveToTheNextLevel : MonoBehaviour
 {
     public string sceneName;
-
+    public bool isAdditive = false;
+    
     private GameObject _spitzGameObject;
     private Collider2D _spitzCollider;
     private SpitzController _spitzController;
@@ -34,8 +35,15 @@ public class MoveToTheNextLevel : MonoBehaviour
     private IEnumerator WinCoroutine(AudioSource audioSource)
     {
         yield return AudioSourcePlayCoroutine(audioSource);
-        
-        SceneManager.LoadScene(sceneName);
+
+        if (isAdditive)
+        {
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);   
+        }
     }
     
     private IEnumerator AudioSourcePlayCoroutine(AudioSource audioSource)
