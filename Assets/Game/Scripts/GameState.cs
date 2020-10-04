@@ -30,4 +30,9 @@ public class GameState
     {
         return _isGoatMeet;
     }
+
+    public static int GetBonesCount()
+    {
+        return _bones;
+    }
 }
