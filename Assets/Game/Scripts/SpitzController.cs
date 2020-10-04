@@ -5,7 +5,7 @@ using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
-public class SpitzController : MonoBehaviour, BeltTarget
+public class SpitzController : MonoBehaviour
 {
     public float speed;
     
@@ -16,9 +16,16 @@ public class SpitzController : MonoBehaviour, BeltTarget
     private Vector2 _movementDirection;
     
     private List<BeltController> _activeBelts = new List<BeltController>();
-    
+
+    private Animator _animator;
+
+    private int _animationParameterIdDirectionHorizontal;
+
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
+        _animationParameterIdDirectionHorizontal = Animator.StringToHash("Direction Horizontal");
+        
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -27,6 +34,19 @@ public class SpitzController : MonoBehaviour, BeltTarget
         if (_isInteractionsAllowed)
         {
             _movementDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+            if (_movementDirection.x > 0)
+            {
+                _animator.SetInteger(_animationParameterIdDirectionHorizontal, 1);
+            } 
+            else if (_movementDirection.x < 0)
+            {
+                _animator.SetInteger(_animationParameterIdDirectionHorizontal, -1);
+            }
+            else
+            {
+                _animator.SetInteger(_animationParameterIdDirectionHorizontal, 0);
+            }
         }
     }
 
@@ -59,12 +79,7 @@ public class SpitzController : MonoBehaviour, BeltTarget
             _activeBelts.Add(belt);
         }
     }
-
-    public void OnBeltStay(BeltController belt)
-    {
-        
-    }
-
+    
     public void OnBeltExit(BeltController belt)
     {
         if (_activeBelts.Contains(belt))
@@ -76,5 +91,14 @@ public class SpitzController : MonoBehaviour, BeltTarget
     public void TakeItem(string name)
     {
         GameState.TakeItem(name);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var bone = other.gameObject.GetComponent<Bone>();
+        if (bone != null)
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

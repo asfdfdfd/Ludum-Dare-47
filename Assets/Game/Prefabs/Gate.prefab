@@ -305,3 +305,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd66f7f772f4ff7bb489b9261bd7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObjectGate1: {fileID: 3370934971922347309}
+  gameObjectGate2: {fileID: 3370934971358781765}
