@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Timers;
+using DG.Tweening;
 using UnityEngine;
 using Random = System.Random;
 using Vector2 = UnityEngine.Vector2;
@@ -29,6 +31,12 @@ public class SpitzController : MonoBehaviour
     public AudioSource[] soundsBark;
     
     private Random random = new Random();
+
+    public GameObject gameObjectBarkIcon;
+
+    private static readonly float BARK_ICON_TIMER = 1.0f;
+
+    private float barkIconTimer = 0.0f;
     
     private void Awake()
     {
@@ -36,6 +44,8 @@ public class SpitzController : MonoBehaviour
         _animationParameterIdDirectionHorizontal = Animator.StringToHash("Direction Horizontal");
         
         _rigidbody = GetComponent<Rigidbody2D>();
+        
+        gameObjectBarkIcon.SetActive(false);
     }
 
     private void Update()
@@ -61,6 +71,20 @@ public class SpitzController : MonoBehaviour
             {
                 Bark();
             }
+        }
+
+        if (barkIconTimer > 0)
+        {
+            gameObjectBarkIcon.SetActive(true);
+        }
+        else
+        {
+            gameObjectBarkIcon.SetActive(false);
+        }
+
+        if (barkIconTimer > 0)
+        {
+            barkIconTimer -= Time.deltaTime;
         }
     }
 
@@ -153,6 +177,8 @@ public class SpitzController : MonoBehaviour
 
     public void Bark()
     {
+        barkIconTimer = BARK_ICON_TIMER;
+
         foreach (var audioSource in soundsBark)
         {
             audioSource.Stop();
