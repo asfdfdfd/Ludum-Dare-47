@@ -37,6 +37,8 @@ public class SpitzController : MonoBehaviour
     private static readonly float BARK_ICON_TIMER = 1.0f;
 
     private float barkIconTimer = 0.0f;
+
+    private bool isJumpPressed = false;
     
     private void Awake()
     {
@@ -67,8 +69,10 @@ public class SpitzController : MonoBehaviour
                 _animator.SetInteger(_animationParameterIdDirectionHorizontal, 0);
             }
 
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (!isJumpPressed && Input.GetAxis("Jump") > 0)
             {
+                isJumpPressed = true;
+                
                 Bark();
             }
         }
@@ -85,6 +89,11 @@ public class SpitzController : MonoBehaviour
         if (barkIconTimer > 0)
         {
             barkIconTimer -= Time.deltaTime;
+        }
+
+        if (Input.GetAxis("Jump") == 0)
+        {
+            isJumpPressed = false;
         }
     }
 

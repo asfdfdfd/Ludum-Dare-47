@@ -17,6 +17,8 @@ public class ActionTriggerController : MonoBehaviour
 
     public UnityEvent eventOnSpitzEnter;
     public UnityEvent eventOnSpitzExit;
+
+    private bool isJumpPressed = false;
     
     private void Start()
     {
@@ -27,9 +29,16 @@ public class ActionTriggerController : MonoBehaviour
 
     private void Update()
     {
-        if (_isSpitzInTrigger && Input.GetKeyUp(KeyCode.Space))
+        if (!isJumpPressed && _isSpitzInTrigger && Input.GetAxis("Jump") > 0)
         {
+            isJumpPressed = true;
+            
             target?.Invoke();
+        }
+
+        if (Input.GetAxis("Jump") == 0)
+        {
+            isJumpPressed = false;
         }
     }
 
