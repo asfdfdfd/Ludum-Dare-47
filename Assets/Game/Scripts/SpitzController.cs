@@ -155,7 +155,7 @@ public class SpitzController : MonoBehaviour
         var bone = other.gameObject.GetComponent<Bone>();
         if (bone != null)
         {
-            Destroy(other.gameObject);
+            Destroy(bone.parent);
             
             TakeBone();
         }
