@@ -25,6 +25,9 @@ public class SpitzController : MonoBehaviour
     private int _animationParameterIdDirectionHorizontal;
     private int _animationParameterIdDirectionVertical;
     private int _animationParameterIdIsJakeTakenRightNow;
+    private int _animationParameterIdIsJakeTaken;
+    private int _animationParameterIdUserHasNotTouchedAnything;
+    private int _animationParameterIdIsUserSit;
     
     public AudioSource soundTakeBone;
     public AudioSource soundTakeJake;
@@ -41,6 +44,12 @@ public class SpitzController : MonoBehaviour
     private float barkIconTimer = 0.0f;
 
     private bool isJumpPressed = false;
+
+    private bool isDogSit = false;
+    
+    private static readonly float USER_HAS_NOT_TOUCHED_ANYTHING_TIMER = 5.0f;
+
+    private float userHasNotTouchedAnythingTimer = USER_HAS_NOT_TOUCHED_ANYTHING_TIMER;
     
     private void Awake()
     {
@@ -48,6 +57,9 @@ public class SpitzController : MonoBehaviour
         _animationParameterIdDirectionHorizontal = Animator.StringToHash("Direction Horizontal");
         _animationParameterIdDirectionVertical = Animator.StringToHash("Direction Vertical");
         _animationParameterIdIsJakeTakenRightNow = Animator.StringToHash("IsJakeTakenRightNow");
+        _animationParameterIdIsJakeTaken = Animator.StringToHash("IsJakeTaken");
+        _animationParameterIdUserHasNotTouchedAnything = Animator.StringToHash("UserHasNotTouchedAnything");
+        _animationParameterIdIsUserSit = Animator.StringToHash("IsUserSit");
         
         _rigidbody = GetComponent<Rigidbody2D>();
         
@@ -62,10 +74,14 @@ public class SpitzController : MonoBehaviour
 
             if (_movementDirection.x > 0)
             {
+                isDogSit = false;
+                userHasNotTouchedAnythingTimer = USER_HAS_NOT_TOUCHED_ANYTHING_TIMER;
                 _animator.SetInteger(_animationParameterIdDirectionHorizontal, 1);
             } 
             else if (_movementDirection.x < 0)
             {
+                isDogSit = false;
+                userHasNotTouchedAnythingTimer = USER_HAS_NOT_TOUCHED_ANYTHING_TIMER;
                 _animator.SetInteger(_animationParameterIdDirectionHorizontal, -1);
             }
             else
@@ -75,10 +91,14 @@ public class SpitzController : MonoBehaviour
             
             if (_movementDirection.y > 0)
             {
+                isDogSit = false;
+                userHasNotTouchedAnythingTimer = USER_HAS_NOT_TOUCHED_ANYTHING_TIMER;
                 _animator.SetInteger(_animationParameterIdDirectionVertical, 1);
             } 
             else if (_movementDirection.y < 0)
             {
+                isDogSit = false;
+                userHasNotTouchedAnythingTimer = USER_HAS_NOT_TOUCHED_ANYTHING_TIMER;
                 _animator.SetInteger(_animationParameterIdDirectionVertical, -1);
             }
             else
@@ -107,11 +127,24 @@ public class SpitzController : MonoBehaviour
         {
             barkIconTimer -= Time.deltaTime;
         }
+        
+        if (userHasNotTouchedAnythingTimer > 0)
+        {
+            userHasNotTouchedAnythingTimer -= Time.deltaTime;
+        }
+        
+        if (userHasNotTouchedAnythingTimer < 0 && !isDogSit)
+        {
+            isDogSit = true;
+            _animator.SetTrigger(_animationParameterIdUserHasNotTouchedAnything);
+        }
 
         if (Input.GetAxis("Jump") == 0)
         {
             isJumpPressed = false;
         }
+        
+        _animator.SetBool(_animationParameterIdIsUserSit, isDogSit);
     }
 
     private void FixedUpdate()
@@ -190,6 +223,7 @@ public class SpitzController : MonoBehaviour
     private void TakeJake()
     {
         _animator.SetTrigger(_animationParameterIdIsJakeTakenRightNow);
+        _animator.SetBool(_animationParameterIdIsJakeTaken, true);
         
         soundTakeJake.Play();
         
