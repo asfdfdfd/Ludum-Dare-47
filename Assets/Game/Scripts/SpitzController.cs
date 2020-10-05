@@ -24,7 +24,8 @@ public class SpitzController : MonoBehaviour
 
     private int _animationParameterIdDirectionHorizontal;
     private int _animationParameterIdDirectionVertical;
-
+    private int _animationParameterIdIsJakeTakenRightNow;
+    
     public AudioSource soundTakeBone;
     public AudioSource soundTakeJake;
     public AudioSource soundMeetGoat;
@@ -46,6 +47,7 @@ public class SpitzController : MonoBehaviour
         _animator = GetComponent<Animator>();
         _animationParameterIdDirectionHorizontal = Animator.StringToHash("Direction Horizontal");
         _animationParameterIdDirectionVertical = Animator.StringToHash("Direction Vertical");
+        _animationParameterIdIsJakeTakenRightNow = Animator.StringToHash("IsJakeTakenRightNow");
         
         _rigidbody = GetComponent<Rigidbody2D>();
         
@@ -187,6 +189,8 @@ public class SpitzController : MonoBehaviour
 
     private void TakeJake()
     {
+        _animator.SetTrigger(_animationParameterIdIsJakeTakenRightNow);
+        
         soundTakeJake.Play();
         
         GameState.TakeItem();
