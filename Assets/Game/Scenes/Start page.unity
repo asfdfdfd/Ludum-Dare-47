@@ -10403,6 +10403,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1692057469}
     m_Modifications:
+    - target: {fileID: 2770615976626547482, guid: 549a1766d730245fab4a4d5ef25571b3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 26e159a9fbae34448a2d52e5e264098d, type: 3}
+    - target: {fileID: 2770615976626547482, guid: 549a1766d730245fab4a4d5ef25571b3,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2770615976626547483, guid: 549a1766d730245fab4a4d5ef25571b3,
         type: 3}
       propertyPath: m_Name

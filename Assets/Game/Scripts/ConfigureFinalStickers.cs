@@ -16,7 +16,7 @@ public class ConfigureFinalStickers : MonoBehaviour
             Destroy(stickerJake);
         }
 
-        if (GameState.GetBonesCount() != 100)
+        if (GameState.GetBonesCount() != 19)
         {
             Destroy(stickerBones);
         }
