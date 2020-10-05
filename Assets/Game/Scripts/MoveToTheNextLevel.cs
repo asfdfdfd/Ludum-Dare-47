@@ -26,6 +26,8 @@ public class MoveToTheNextLevel : MonoBehaviour
     {
         if (_spitzCollider == other)
         {
+            Destroy(GameObject.Find("RandomOwnerPhrases"));
+            
             _spitzController.SetIsInteractionsAllowed(false);
             
             StartCoroutine(WinCoroutine(audioSourceEndLevel));
