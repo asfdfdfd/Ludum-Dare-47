@@ -23,6 +23,7 @@ public class SpitzController : MonoBehaviour
     private Animator _animator;
 
     private int _animationParameterIdDirectionHorizontal;
+    private int _animationParameterIdDirectionVertical;
 
     public AudioSource soundTakeBone;
     public AudioSource soundTakeJake;
@@ -44,6 +45,7 @@ public class SpitzController : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _animationParameterIdDirectionHorizontal = Animator.StringToHash("Direction Horizontal");
+        _animationParameterIdDirectionVertical = Animator.StringToHash("Direction Vertical");
         
         _rigidbody = GetComponent<Rigidbody2D>();
         
@@ -68,6 +70,19 @@ public class SpitzController : MonoBehaviour
             {
                 _animator.SetInteger(_animationParameterIdDirectionHorizontal, 0);
             }
+            
+            if (_movementDirection.y > 0)
+            {
+                _animator.SetInteger(_animationParameterIdDirectionVertical, 1);
+            } 
+            else if (_movementDirection.y < 0)
+            {
+                _animator.SetInteger(_animationParameterIdDirectionVertical, -1);
+            }
+            else
+            {
+                _animator.SetInteger(_animationParameterIdDirectionVertical, 0);
+            }            
 
             if (!isJumpPressed && Input.GetAxis("Jump") > 0)
             {
